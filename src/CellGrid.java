@@ -33,10 +33,14 @@ public class CellGrid {
 
     public void show(PApplet pApplet)
     {
+        int y = cellSize * generation;
         for(int i = 0; i < grid.length; i++){
             int x = cellSize * i;
-            int y = cellSize * generation;
-            pApplet.rect(cellSize*i,cellSize*generation, x+cellSize, y+cellSize);
+
+            Cell cell = grid[i];
+
+            pApplet.fill(cell.getState()==1 ? 255:0);
+            pApplet.rect(x,y, cellSize, cellSize);
         }
     }
 }

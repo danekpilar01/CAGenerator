@@ -21,16 +21,17 @@ public class CAGeneration extends PApplet{
 
         cellGrid = new CellGrid(resolution,this.width/resolution);
 
-        for(int i = 0; i < 40; i++){
-            cellGrid.nextGeneration();
-            //cellGrid.show(this);
-        }
-
     }
 
     @Override
     public void draw() {
 
+    }
+
+    @Override
+    public void keyPressed() {
+        cellGrid.nextGeneration();
+        cellGrid.show(this);
     }
 }
 
