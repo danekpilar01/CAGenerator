@@ -10,17 +10,20 @@ public class CAGeneration extends PApplet{
 
     @Override
     public void settings() {
-        size(500,500);
+        size(900,900);
     }
 
     @Override
     public void setup() {
 
-        final int resolution = 60;
-
+        final int resolution = 150;
 
         cellGrid = new CellGrid(resolution,this.width/resolution);
 
+        for(int i = 0 ; i < height/cellGrid.getCellSize(); i++){
+            cellGrid.show(this);
+            cellGrid.nextGeneration();
+        }
     }
 
     @Override
@@ -28,10 +31,5 @@ public class CAGeneration extends PApplet{
 
     }
 
-    @Override
-    public void keyPressed() {
-        cellGrid.nextGeneration();
-        cellGrid.show(this);
-    }
 }
 

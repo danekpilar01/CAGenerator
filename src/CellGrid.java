@@ -2,8 +2,8 @@ import processing.core.PApplet;
 
 public class CellGrid {
 
-    Cell[] grid;
-    int width, cellSize, generation;
+    private Cell[] grid;
+    private int width, cellSize, generation;
 
     CellGrid(int width, int cellSize){
         this.width = width;
@@ -30,6 +30,9 @@ public class CellGrid {
         generation++;
     }
 
+    public int getCellSize(){
+        return cellSize;
+    }
 
     public void show(PApplet pApplet)
     {
