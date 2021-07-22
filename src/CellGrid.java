@@ -1,9 +1,15 @@
-import processing.core.PApplet;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class CellGrid {
 
     private Cell[] grid;
     private int width, cellSize, generation;
+    private BufferedImage imageOutput;
+
 
     CellGrid(int width, int cellSize){
         this.width = width;
@@ -13,6 +19,7 @@ public class CellGrid {
             grid[i]=new Cell();
         grid[width/2].setState(1);
         generation = 0;
+        imageOutput = new BufferedImage(width*cellSize, width*cellSize,BufferedImage.TYPE_INT_RGB);
     }
 
     public void nextGeneration(){
@@ -34,7 +41,7 @@ public class CellGrid {
         return cellSize;
     }
 
-    public void show(PApplet pApplet)
+    public void drawGeneration()
     {
         int y = cellSize * generation;
         for(int i = 0; i < grid.length; i++){
@@ -42,8 +49,21 @@ public class CellGrid {
 
             Cell cell = grid[i];
 
-            pApplet.fill(cell.getState()==1 ? 255:0);
-            pApplet.rect(x,y, cellSize, cellSize);
+            Graphics2D graph = imageOutput.createGraphics();
+
+            Color color = cell.getState() == 1 ? Color.WHITE : Color.BLACK;
+            graph.setColor(color);
+            graph.fill(new Rectangle(x,y,cellSize,cellSize));
+            graph.dispose();
+        }
+    }
+
+    public void saveImageOutput(String fileName){
+        File output = new File(fileName);
+        try{
+            ImageIO.write(imageOutput,"jpg",output);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
         }
     }
 }
