@@ -13,7 +13,7 @@ public class CAGenerate {
         this.resolution = resolution;
         settings(width,height);
 
-        if(rulesNumStart >=0 && rulesNumEnd <= 256 && rulesNumStart < rulesNumEnd){
+        if(rulesNumStart >=0 && rulesNumEnd < 256 && rulesNumStart < rulesNumEnd){
             this.rulesNumStart = rulesNumStart;
             this.rulesNumEnd = rulesNumEnd;
         }else{
